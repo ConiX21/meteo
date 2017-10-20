@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="" href="css/style.css">
+    <link rel="stylesheet" type="" href="css/animate.css">
+    <script src="js/weathers.js"></script>
+    <script src="js/weatherStatus.js"></script>
+    <script src="js/mustache.min.js"></script>
+    <script src="js/indexController.js"></script>
+    <!--signalé APRES weathers et mustache car il récupére leurs valeurs-->
+    <title>Document</title>
+</head>
+
+<body>
+    <main class="container">
+        <div class="row day animated flipInX">
+
+        </div>
+        <div class="row animated flipInX">
+            <div class="col-xs-6 col-xs-offset-1 city">
+
+            </div>
+        </div>
+        <div class="row status animated fadeInDownBig">
+            <div class="col-xs-6 col-xs-offset-1 text-center">
+                <img id="pictureStatus" class="img-responsive">
+            </div>
+            <div class="col-xs-4 text-center">
+                <h1 id="degres"></h1>
+            </div>
+        </div>
+        <div class="row colWeathers animated fadeInDownBig"></div>
+        <div class="row status wind vcenter">
+            <div class="col-xs-2 text-center">
+                <svg width="140" height="198" viewBox="-10 -5 70 98" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <g>
+                            <animateTransform attributeName="transform" type="rotate" from="0 27 31" to="360 27 31" dur="2s" repeatCount="indefinite"
+                            />
+                            <path id="helixe" d="m39.825359,39.628075c-3.283,-3.513 -6.472,-6.296 -9.019,-8.018c0.119,-0.962 -0.116,-1.89 -0.638,-2.629c1.184,-2.848 2.307,-6.925 3.083,-11.662c1.479,-8.949 1.131,-16.465 -0.754,-16.768c-1.905,-0.32 -4.639,6.69 -6.106,15.645c-0.74,4.505 -0.992,8.528 -0.839,11.559c-1.124,0.501 -2.012,1.484 -2.223,2.784c0,0.009 0.002,0.015 0,0.02c-2.92,0.853 -6.67,2.426 -10.726,4.619c-7.978,4.331 -13.703,9.213 -12.775,10.91c0.913,1.677 8.121,-0.456 16.088,-4.797c4.155,-2.248 7.593,-4.619 9.886,-6.643c0.218,0.08 0.411,0.209 0.652,0.248c0.342,0.05 0.664,-0.005 0.992,-0.039c1.525,2.664 4.046,6.027 7.297,9.51c6.167,6.643 12.329,10.969 13.728,9.665c1.41,-1.317 -2.45,-7.761 -8.646,-14.404zm-13.002,-6.981c-0.824,-0.133 -1.385,-0.917 -1.25,-1.741c0.128,-0.823 0.917,-1.389 1.745,-1.25c0.824,0.135 1.39,0.913 1.251,1.737c-0.134,0.823 -0.913,1.388 -1.746,1.254z"
+                                fill=" #77727f" />
+                        </g>
+
+                        <g id="svg_5">
+                            <path d="m24.927977,35.132474l-4.075,62.399515l12.402,0c-1.357543,-20.427457 -2.715087,-40.854913 -4.07263,-61.28237l-4.25437,-2.633445l0,1.5163z"
+                                fill=" #77727f" id="svg_1" />
+                            <path fill=" #77727f" stroke="null" stroke-width="null" stroke-opacity="null" fill-opacity="null" d="m29.278501,36.438446c-0.075815,-2.956784 -0.075815,-3.032599 -0.075815,-3.0326c0.000001,0 -4.245639,0 -4.245639,0c0,0 0,1.06141 0,1.06141c0,0 4.397269,4.927974 4.321454,1.97119z"
+                                id="svg_4" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="col-xs-10 text-right">
+                <h3 id="wind"></h3>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/template" id="cityTemplate">
+        <h4>
+            <span class="glyphicon glyphicon-globe"></span> {{city}}
+        </h4>
+    </script>
+
+    <script type="text/template" id="dayTemplate">
+        <div class="col-xs-8">
+            <h3> {{day}}</h3>
+        </div>
+        <div class="col-xs-3">
+            <button type="button" class="btn btn-info">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+        </div>
+    </script>
+
+    <script type="text/template" id="weatherTemplate">
+        <!--creer une boucle qui fera 4 fois le col-xs-3-->
+        {{#temperatureLoop}}
+        <div class="col-xs-3 temps">
+            <div class="row">
+                <img src="{{status}}">
+            </div>
+            <div class="row">
+                <h4 class="degres">{{degres}}</h4>
+            </div>
+            <div class="row">
+                <h4>{{hour}}</h4>
+            </div>
+        </div>
+        {{/temperatureLoop}}
+        <!--on ferme la boucle (tout ce qui est ouvert est fermé)-->
+    </script>
+</body>
+
+</html>
